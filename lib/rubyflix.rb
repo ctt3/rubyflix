@@ -1,5 +1,15 @@
-require "rubyflix/version"
-
 module Rubyflix
-  # Your code goes here...
+	require 'dependencies'
+
+	def Rubyflix.main
+		root = TkRoot.new { title "Hello, World!" }
+		TkLabel.new(root) do
+		   text 'Hello, World!'
+		   pack { padx 15 ; pady 15; side 'left' }
+		end
+		Tk.mainloop
+	end
+
 end
+
+

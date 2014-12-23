@@ -2,7 +2,7 @@ module Rubyflix
 	require 'dependencies'
 
 	def Rubyflix.main
-		root = TkRoot.new { title "Hello, World!" }
+		root = FullWindow.new
 		TkLabel.new(root) do
 		   text 'Hello, World!'
 		   pack { padx 15 ; pady 15; side 'left' }

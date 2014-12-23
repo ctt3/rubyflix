@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Rubyflix::VERSION
   spec.authors       = ["Charlie"]
   spec.email         = ["ctt3"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.summary       = "Improving your selection from your movie collection."
+  spec.description   = ""
   spec.homepage      = ""
   spec.license       = "MIT"
 

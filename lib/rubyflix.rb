@@ -3,10 +3,10 @@ module Rubyflix
 
 	def Rubyflix.main
 		root = FullWindow.new
-		TkLabel.new(root) do
-		   text 'Hello, World!'
-		   pack { padx 15 ; pady 15; side 'left' }
-		end
+		colorB = Button.new({type: 'color', root: root})
+		colorB.pack { padx 150 ; pady 150; side 'left' }
+		pathB = Button.new({type: 'collection', root: root})
+		pathB.pack { padx 150 ; pady 150; side 'left' }
 		Tk.mainloop
 	end
 

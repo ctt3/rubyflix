@@ -3,6 +3,7 @@ class Button < TkButton
 	def initialize(*args, dict)
 		super(*args)
 		@root = dict[:root]
+		@collector = dict[:collector]
 		self.new(dict[:type])
 	end
 
@@ -30,5 +31,6 @@ class Button < TkButton
 		save = Nokogiri::XML File.open(SETTINGS_FILE_PATH, 'r')
   	save.at_xpath('//collection').content = path
   	File.open(SETTINGS_FILE_PATH, 'w') {|f| save.write_xml_to f}
+  	@collector.collect_files
 	end
 end

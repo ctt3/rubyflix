@@ -1,4 +1,6 @@
 <settings>
+	<initial>true</initial>
 	<color></color>
 	<collection></collection>
+	<collection-size></collection-size>
 </settings>

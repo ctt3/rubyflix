@@ -21,16 +21,25 @@ class Button < TkButton
 	def set_root_color
 		color = Tk::chooseColor initialcolor: @root.bg
 		@root.bg = color
-		save = Nokogiri::XML File.open(SETTINGS_FILE_PATH, 'r')
-  	save.at_xpath('//color').content = color
-  	File.open(SETTINGS_FILE_PATH, 'w') {|f| save.write_xml_to f}
+		@settings = Nokogiri::XML File.open(SETTINGS_PATH, 'r')
+  	@settings.at_xpath('//color').content = color
+  	File.open(SETTINGS_PATH, 'w') {|f| @settings.write_xml_to f}
 	end
 
 	def set_collection_path
-		path = Tk::chooseDirectory
-		save = Nokogiri::XML File.open(SETTINGS_FILE_PATH, 'r')
-  	save.at_xpath('//collection').content = path
-  	File.open(SETTINGS_FILE_PATH, 'w') {|f| save.write_xml_to f}
-  	@collector.collect_files
+		@settings = Nokogiri::XML File.open(SETTINGS_PATH, 'r')
+		current_collection = @settings.at_xpath('//collection').content
+		
+		unless current_collection == ''
+			path = Tk::chooseDirectory initialdir: current_collection, mustexist: true, title: "Select Collection Folder"
+		else
+			path = Tk::chooseDirectory
+		end
+
+		unless path == ''
+	  	@settings.at_xpath('//collection').content = path
+	  	File.open(SETTINGS_PATH, 'w') {|f| @settings.write_xml_to f}
+	  	@collector.collect_files(change=true)
+	  end
 	end
 end

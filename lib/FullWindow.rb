@@ -1,6 +1,7 @@
 class FullWindow < TkRoot
 
 	def initialize(*args)
+		@settings = Nokogiri::XML File.open(SETTINGS_PATH, 'r')
 		super(*args)
 		self.new
 	end
@@ -14,8 +15,7 @@ class FullWindow < TkRoot
     self.takefocus # <-- move focus to this widget
     self.bind("Escape", proc{self.destroy})
 
-		save = Nokogiri::XML File.open(SETTINGS_FILE_PATH, 'r')
-  	color = save.at_xpath('//color').text
+  	color = @settings.at_xpath('//color').text
   	self.bg = (color == '' ? self.bg : color)
   end
 end
